@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/repositoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/languageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/language"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/repositoryName" />
+
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/languageLabel"
+        app:layout_constraintLeft_toRightOf="@id/languageLabel"
+        app:layout_constraintTop_toTopOf="@id/languageLabel" />
+
+    <TextView
+        android:id="@+id/watchersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/watchers"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/languageLabel"
+        app:layout_constraintTop_toBottomOf="@id/languageLabel" />
+
+    <TextView
+        android:id="@+id/watchers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/green"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/watchersLabel"
+        app:layout_constraintLeft_toRightOf="@id/watchersLabel"
+        app:layout_constraintTop_toTopOf="@id/watchersLabel" />
+
+    <TextView
+        android:id="@+id/forksLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/forks"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/watchersLabel"
+        app:layout_constraintTop_toBottomOf="@id/watchersLabel" />
+
+    <TextView
+        android:id="@+id/forks"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/forksLabel"
+        app:layout_constraintLeft_toRightOf="@id/forksLabel"
+        app:layout_constraintTop_toTopOf="@id/forksLabel" />
+
+    <TextView
+        android:id="@+id/issuesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/issues"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/forksLabel"
+        app:layout_constraintTop_toBottomOf="@id/forksLabel" />
+
+    <TextView
+        android:id="@+id/issues"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/issuesLabel"
+        app:layout_constraintLeft_toRightOf="@id/issuesLabel"
+        app:layout_constraintTop_toTopOf="@id/issuesLabel" />
+
+    <TextView
+        android:id="@+id/creationDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/creation_date"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/issuesLabel"
+        app:layout_constraintTop_toBottomOf="@id/issuesLabel" />
+
+    <TextView
+        android:id="@+id/creationDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/creationDateLabel"
+        app:layout_constraintLeft_toRightOf="@id/creationDateLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/creationDateLabel" />
+
+    <TextView
+        android:id="@+id/updateDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/update_date"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/creationDateLabel"
+        app:layout_constraintTop_toBottomOf="@id/creationDateLabel" />
+
+    <TextView
+        android:id="@+id/updateDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/updateDateLabel"
+        app:layout_constraintLeft_toLeftOf="@id/creationDate"
+        app:layout_constraintTop_toTopOf="@id/updateDateLabel" />
+
+    <TextView
+        android:id="@+id/ownerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/owner_nick"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/updateDateLabel"
+        app:layout_constraintTop_toBottomOf="@id/updateDateLabel" />
+
+    <Button
+        android:id="@+id/owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="16sp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ownerLabel"
+        app:layout_constraintLeft_toRightOf="@id/ownerLabel"
+        app:layout_constraintTop_toTopOf="@id/ownerLabel"
+        android:layout_marginEnd="40dp" />
+
+    <TextView
+        android:id="@+id/scoreLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/score"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/ownerLabel"
+        app:layout_constraintTop_toBottomOf="@id/ownerLabel" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/scoreLabel"
+        app:layout_constraintLeft_toRightOf="@id/scoreLabel"
+        app:layout_constraintTop_toTopOf="@id/scoreLabel" />
+
+    <Button
+        android:id="@+id/openWebBrowser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/open_in_browser"
+        app:layout_constraintTop_toBottomOf="@id/score"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

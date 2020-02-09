@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="170dp">
+
+    <TextView
+        android:id="@+id/ownerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/ownerImage"
+        app:layout_constraintLeft_toLeftOf="@id/ownerImage"
+        app:layout_constraintRight_toRightOf="@id/ownerImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ownerImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:src="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/repositoryName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ownerName"
+        app:layout_constraintLeft_toRightOf="@id/ownerName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ownerName" />
+
+    <TextView
+        android:id="@+id/watchersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/watchers"
+        app:layout_constraintLeft_toRightOf="@id/ownerImage"
+        app:layout_constraintTop_toTopOf="@id/ownerImage" />
+
+    <TextView
+        android:id="@+id/watchers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/watchersLabel"
+        app:layout_constraintLeft_toRightOf="@id/watchersLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/watchersLabel" />
+
+    <TextView
+        android:id="@+id/issuesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/issues"
+        app:layout_constraintLeft_toLeftOf="@id/watchersLabel"
+        app:layout_constraintTop_toBottomOf="@id/watchers" />
+
+    <TextView
+        android:id="@+id/issues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/issuesLabel"
+        app:layout_constraintLeft_toLeftOf="@id/watchers"
+        app:layout_constraintTop_toTopOf="@id/issuesLabel" />
+
+    <TextView
+        android:id="@+id/forksLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/forks"
+        app:layout_constraintLeft_toLeftOf="@id/issuesLabel"
+        app:layout_constraintTop_toBottomOf="@id/issuesLabel" />
+
+    <TextView
+        android:id="@+id/forks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toBottomOf="@id/forksLabel"
+        app:layout_constraintLeft_toLeftOf="@id/issues"
+        app:layout_constraintTop_toTopOf="@id/forksLabel" />
+
+    <TextView
+        android:id="@+id/starsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/stars"
+        app:layout_constraintLeft_toLeftOf="@id/forksLabel"
+        app:layout_constraintTop_toBottomOf="@id/forksLabel" />
+
+    <TextView
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="@id/starsLabel"
+        app:layout_constraintLeft_toLeftOf="@id/issues"
+        app:layout_constraintTop_toTopOf="@id/starsLabel" />
+
+    <TextView
+        android:id="@+id/updateDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/update_date"
+        app:layout_constraintLeft_toLeftOf="@id/starsLabel"
+        app:layout_constraintTop_toBottomOf="@id/starsLabel" />
+
+    <TextView
+        android:id="@+id/updateDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="repository name:"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@id/updateDateLabel"
+        app:layout_constraintLeft_toLeftOf="@id/stars"
+        app:layout_constraintTop_toTopOf="@id/updateDateLabel" />
+
+    <ImageView
+        android:id="@+id/itemDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

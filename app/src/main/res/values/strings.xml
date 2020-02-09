@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GitBrowser</string>
+
+    <!-- repo details -->
+    <string name="stars">Stars:</string>
+    <string name="forks">Forks:</string>
+    <string name="issues">Issues:</string>
+    <string name="watchers">Watchers:</string>
+    <string name="update_date">Update date:</string>
+    <string name="creation_date">Creation date:</string>
+    <string name="language">Language:</string>
+    <string name="score">Score:</string>
+
+    <!-- owner details -->
+    <string name="owner_nick">Owner nick:</string>
+    <string name="name">Name:</string>
+    <string name="company">Company :</string>
+    <string name="blog">Blog :</string>
+    <string name="followers">Followers :</string>
+    <string name="location">Location :</string>
+
+    <!-- general -->
+    <string name="open_in_browser">Open in browser</string>
+
+</resources>
