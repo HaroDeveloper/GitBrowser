@@ -11,5 +11,5 @@ data class OwnerDetails(
         var followers: String?,
         var blog: String?,
         var url: String?,
-        var location : String?
+        var location: String?
 )

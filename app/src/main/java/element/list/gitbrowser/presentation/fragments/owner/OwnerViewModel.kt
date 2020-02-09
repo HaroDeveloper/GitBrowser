@@ -18,7 +18,6 @@ class OwnerViewModel(private val gitHubRepository: GitHubRepository) : ViewModel
             override fun onResponse(call: retrofit2.Call<OwnerDetails>, response: Response<OwnerDetails>) {
                 ownerDetails.value = response.body()
             }
-
         })
     }
 }

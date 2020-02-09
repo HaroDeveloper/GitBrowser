@@ -12,12 +12,11 @@ class GitBrowserApp : Application() {
         startKoin {
             androidContext(this@GitBrowserApp)
             modules(
-                listOf(
-                    apiModule,
-                    viewModelModule
-                )
+                    listOf(
+                            apiModule,
+                            viewModelModule
+                    )
             )
         }
     }
-
 }

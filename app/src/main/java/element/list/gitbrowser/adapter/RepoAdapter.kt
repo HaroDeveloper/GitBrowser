@@ -14,9 +14,9 @@ import element.list.gitbrowser.model.GitRepository
 import element.list.gitbrowser.utils.format
 import kotlinx.android.synthetic.main.item_repository.view.*
 
-class RepoAdapter(var context: Context) : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
+class RepoAdapter(private var context: Context) : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
 
-    var repositoryList: MutableList<GitRepository> = mutableListOf()
+    private var repositoryList: MutableList<GitRepository> = mutableListOf()
     lateinit var repoClickListener: RepoClickListener
 
     fun setData(repositories: MutableList<GitRepository>) {
@@ -49,8 +49,6 @@ class RepoAdapter(var context: Context) : RecyclerView.Adapter<RepoAdapter.ViewH
         holder.rootLayout.setOnClickListener {
             repoClickListener.repoClicked(repositoryList[position])
         }
-
-
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

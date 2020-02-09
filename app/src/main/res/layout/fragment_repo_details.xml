@@ -39,9 +39,9 @@
         android:layout_marginLeft="30dp"
         android:textColor="@color/blue"
         android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/languageLabel"
         app:layout_constraintLeft_toRightOf="@id/languageLabel"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/languageLabel" />
 
     <TextView
@@ -62,9 +62,9 @@
         android:layout_marginLeft="30dp"
         android:textColor="@color/green"
         android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/watchersLabel"
         app:layout_constraintLeft_toRightOf="@id/watchersLabel"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/watchersLabel" />
 
     <TextView
@@ -84,9 +84,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/forksLabel"
         app:layout_constraintLeft_toRightOf="@id/forksLabel"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/forksLabel" />
 
     <TextView
@@ -106,9 +106,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/issuesLabel"
         app:layout_constraintLeft_toRightOf="@id/issuesLabel"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/issuesLabel" />
 
     <TextView
@@ -148,9 +148,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/updateDateLabel"
         app:layout_constraintLeft_toLeftOf="@id/creationDate"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/updateDateLabel" />
 
     <TextView
@@ -169,13 +169,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:textSize="16sp"
+        android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/ownerLabel"
         app:layout_constraintLeft_toRightOf="@id/ownerLabel"
-        app:layout_constraintTop_toTopOf="@id/ownerLabel"
-        android:layout_marginEnd="40dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ownerLabel" />
 
     <TextView
         android:id="@+id/scoreLabel"
@@ -195,9 +195,9 @@
         android:layout_marginLeft="30dp"
         android:textColor="@color/red"
         android:textSize="16sp"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/scoreLabel"
         app:layout_constraintLeft_toRightOf="@id/scoreLabel"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/scoreLabel" />
 
     <Button
@@ -205,9 +205,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/open_in_browser"
-        app:layout_constraintTop_toBottomOf="@id/score"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/score" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

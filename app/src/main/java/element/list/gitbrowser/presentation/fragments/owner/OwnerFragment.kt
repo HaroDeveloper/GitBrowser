@@ -13,9 +13,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import element.list.gitbrowser.R
+import element.list.gitbrowser.constants.Constants
 import element.list.gitbrowser.model.OwnerDetails
 import element.list.gitbrowser.utils.resolveIfEmpty
-import element.list.povioflowers.constants.Constants
 import kotlinx.android.synthetic.main.fragment_owner.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

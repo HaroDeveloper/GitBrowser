@@ -11,17 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import element.list.gitbrowser.R
+import element.list.gitbrowser.constants.Constants
 import element.list.gitbrowser.model.GitRepository
 import element.list.gitbrowser.presentation.fragments.owner.OwnerFragment
 import element.list.gitbrowser.utils.format
-import element.list.povioflowers.constants.Constants
 import kotlinx.android.synthetic.main.fragment_repo_details.*
 
 
 class RepoDetailsFragment(var gitRepository: GitRepository) : Fragment() {
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_repo_details, container, false)

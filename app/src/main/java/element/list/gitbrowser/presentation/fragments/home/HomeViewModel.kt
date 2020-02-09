@@ -11,7 +11,7 @@ import org.koin.core.KoinComponent
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel(val gitHubRepository: GitHubRepository) : KoinComponent, ViewModel() {
+class HomeViewModel(private val gitHubRepository: GitHubRepository) : KoinComponent, ViewModel() {
 
     var repositoryListLive: MutableLiveData<MutableList<GitRepository>> = MutableLiveData()
     var repositoryList: MutableList<GitRepository> = mutableListOf()
@@ -26,7 +26,7 @@ class HomeViewModel(val gitHubRepository: GitHubRepository) : KoinComponent, Vie
             }
 
             override fun onResponse(call: retrofit2.Call<RepositoryResponse>, response: Response<RepositoryResponse>) {
-                repoStatus.postValue(RepoStatus.SUCCES)
+                repoStatus.postValue(RepoStatus.SUCCESS)
                 repositoryList = response.body()?.items!!
                 repositoryListLive.value = response.body()?.items
             }

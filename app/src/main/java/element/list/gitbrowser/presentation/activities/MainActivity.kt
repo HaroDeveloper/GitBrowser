@@ -13,9 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-//        supportActionBar?.title = null
-//        toolbar_title.text = "lalal"
-
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fragmentContainer, HomeFragment()).commitAllowingStateLoss()
     }

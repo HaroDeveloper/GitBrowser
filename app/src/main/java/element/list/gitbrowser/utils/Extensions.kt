@@ -18,7 +18,7 @@ fun EditText.hideKeyBoard() {
 }
 
 fun String.resolveIfEmpty(): String {
-    return if (this == null || this == "" )
+    return if (this == "")
         "/"
     else
         this

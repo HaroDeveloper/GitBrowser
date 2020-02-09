@@ -111,7 +111,7 @@ class HomeFragment : Fragment(), RepoClickListener {
 
         homeViewModel.repoStatus.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is RepoStatus.SUCCES -> hideProgressBar()
+                is RepoStatus.SUCCESS -> hideProgressBar()
                 is RepoStatus.LOADING -> showProgressBar()
                 is RepoStatus.FAILURE -> {
                 }
