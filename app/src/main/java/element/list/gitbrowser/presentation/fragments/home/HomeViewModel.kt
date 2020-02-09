@@ -20,7 +20,7 @@ class HomeViewModel(private val gitHubRepository: GitHubRepository) : KoinCompon
 
     fun getRepositories(searchText: String) {
         repoStatus.postValue(RepoStatus.LOADING)
-        gitHubRepository.gitHubApi.searchRepositories(searchText).enqueue(object : Callback<RepositoryResponse> {
+        gitHubRepository.searchRepositories(searchText).enqueue(object : Callback<RepositoryResponse> {
             override fun onFailure(call: retrofit2.Call<RepositoryResponse>, t: Throwable) {
                 repoStatus.postValue(RepoStatus.FAILURE)
             }

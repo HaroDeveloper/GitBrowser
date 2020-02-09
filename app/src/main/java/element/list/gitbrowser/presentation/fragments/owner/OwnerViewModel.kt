@@ -11,7 +11,7 @@ class OwnerViewModel(private val gitHubRepository: GitHubRepository) : ViewModel
     var ownerDetails: MutableLiveData<OwnerDetails> = MutableLiveData()
 
     fun getOwnerDetails(searchText: String) {
-        gitHubRepository.gitHubApi.searchUser(searchText).enqueue(object : Callback<OwnerDetails> {
+        gitHubRepository.searchUser(searchText).enqueue(object : Callback<OwnerDetails> {
             override fun onFailure(call: retrofit2.Call<OwnerDetails>, t: Throwable) {
             }
 
