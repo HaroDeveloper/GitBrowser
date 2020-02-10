@@ -15,10 +15,6 @@ import java.util.concurrent.TimeUnit
 
 val apiModule = module {
 
-    //    fun provideApiService(): ApiService {
-//        return ApiService()
-//    }
-
     fun provideOkHttpClient(): OkHttpClient {
         val httpBuilder = OkHttpClient.Builder()
         httpBuilder.connectTimeout(15, TimeUnit.SECONDS)

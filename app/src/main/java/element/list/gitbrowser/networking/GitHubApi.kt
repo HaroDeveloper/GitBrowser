@@ -8,9 +8,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GitHubApi {
-//    @GET("search/repositories")
-//    fun searchRepositories(@Query("q") name: String): Call<RepositoryResponse>
-
     @GET("search/repositories")
     fun searchRepositories(@Query("q") name: String, @Query("sort") sort: String?): Call<RepositoryResponse>
 

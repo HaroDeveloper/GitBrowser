@@ -16,7 +16,6 @@ import element.list.gitbrowser.model.GitRepository
 import element.list.gitbrowser.presentation.fragments.owner.OwnerFragment
 import element.list.gitbrowser.utils.format
 import kotlinx.android.synthetic.main.fragment_repo_details.*
-import java.io.Serializable
 
 
 class RepoDetailsFragment : Fragment() {
@@ -88,7 +87,7 @@ class RepoDetailsFragment : Fragment() {
         fun newInstance(gitRepository: GitRepository): Fragment {
             val fragment = RepoDetailsFragment()
             val argument = Bundle()
-            argument.putSerializable(GIT_REPOSITORY, gitRepository as Serializable)
+            argument.putSerializable(GIT_REPOSITORY, gitRepository)
             fragment.arguments = argument
             return fragment
         }
