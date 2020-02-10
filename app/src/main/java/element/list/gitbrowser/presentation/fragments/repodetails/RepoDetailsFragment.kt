@@ -16,9 +16,12 @@ import element.list.gitbrowser.model.GitRepository
 import element.list.gitbrowser.presentation.fragments.owner.OwnerFragment
 import element.list.gitbrowser.utils.format
 import kotlinx.android.synthetic.main.fragment_repo_details.*
+import java.io.Serializable
 
 
-class RepoDetailsFragment(var gitRepository: GitRepository) : Fragment() {
+class RepoDetailsFragment : Fragment() {
+
+    private lateinit var gitRepository: GitRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_repo_details, container, false)
@@ -28,6 +31,7 @@ class RepoDetailsFragment(var gitRepository: GitRepository) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        gitRepository = arguments?.getSerializable(GIT_REPOSITORY) as GitRepository
         setData()
         setListeners()
     }
@@ -59,7 +63,7 @@ class RepoDetailsFragment(var gitRepository: GitRepository) : Fragment() {
     private fun setListeners() {
         openWebBrowser.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(gitRepository.url)
+            openURL.data = Uri.parse(gitRepository.htmlUrl)
             startActivity(openURL)
         }
 
@@ -67,7 +71,7 @@ class RepoDetailsFragment(var gitRepository: GitRepository) : Fragment() {
             activity!!.supportFragmentManager.popBackStack()
             (context as FragmentActivity).supportFragmentManager.popBackStack()
             val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.fragmentContainer, OwnerFragment(gitRepository.owner.login!!)).commit()
+            fragmentTransaction.add(R.id.fragmentContainer, OwnerFragment.newInstance(gitRepository.owner.login!!)).commit()
             fragmentTransaction.addToBackStack(OwnerFragment.TAG)
         }
     }
@@ -79,5 +83,14 @@ class RepoDetailsFragment(var gitRepository: GitRepository) : Fragment() {
 
     companion object {
         const val TAG = "RepoDetailsFragment"
+        private const val GIT_REPOSITORY = "GitRepository"
+
+        fun newInstance(gitRepository: GitRepository): Fragment {
+            val fragment = RepoDetailsFragment()
+            val argument = Bundle()
+            argument.putSerializable(GIT_REPOSITORY, gitRepository as Serializable)
+            fragment.arguments = argument
+            return fragment
+        }
     }
 }

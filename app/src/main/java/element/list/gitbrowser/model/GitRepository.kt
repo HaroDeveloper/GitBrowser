@@ -21,6 +21,8 @@ data class GitRepository(
         var score: Double?,
         var url: String?,
         @SerializedName("stargazers_count")
-        var stars: Int?
+        var stars: Int?,
+        @SerializedName("html_url")
+        var htmlUrl: String?
 
 ) : Serializable

@@ -11,5 +11,7 @@ data class OwnerDetails(
         var followers: String?,
         var blog: String?,
         var url: String?,
+        @SerializedName("html_url")
+        var htmlUrl: String?,
         var location: String?
 )

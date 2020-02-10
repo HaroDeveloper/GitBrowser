@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_owner.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class OwnerFragment(var ownerName: String) : Fragment() {
+class OwnerFragment : Fragment() {
 
     private val ownerViewModel: OwnerViewModel by viewModel()
 
@@ -37,7 +37,7 @@ class OwnerFragment(var ownerName: String) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        ownerViewModel.getOwnerDetails(ownerName)
+        ownerViewModel.getOwnerDetails(arguments?.getString(OWNER_NAME)!!)
         setObservers()
         setListeners()
     }
@@ -45,7 +45,7 @@ class OwnerFragment(var ownerName: String) : Fragment() {
     private fun setListeners() {
         openWebBrowser.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(ownerViewModel.ownerDetails.value!!.url)
+            openURL.data = Uri.parse(ownerViewModel.ownerDetails.value!!.htmlUrl)
             startActivity(openURL)
         }
     }
@@ -80,5 +80,14 @@ class OwnerFragment(var ownerName: String) : Fragment() {
 
     companion object {
         const val TAG = "OwnerFragment"
+        private const val OWNER_NAME = "OwnerName"
+
+        fun newInstance(ownerName: String): Fragment {
+            val fragment = OwnerFragment()
+            val argument = Bundle()
+            argument.putString(OWNER_NAME, ownerName)
+            fragment.arguments = argument
+            return fragment
+        }
     }
 }

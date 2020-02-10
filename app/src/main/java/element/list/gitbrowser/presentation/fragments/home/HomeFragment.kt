@@ -91,10 +91,12 @@ class HomeFragment : Fragment(), RepoClickListener {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when (parent!!.getItemAtPosition(position).toString()) {
-                    STARS -> homeViewModel.sortList(FilterStatus.STARS)
-                    FORKS -> homeViewModel.sortList(FilterStatus.FORKS)
-                    UPDATED -> homeViewModel.sortList(FilterStatus.UPDATED)
+                if (searchView.text.toString().isNotEmpty()) {
+                    when (parent!!.getItemAtPosition(position).toString()) {
+                        STARS -> homeViewModel.getRepositories(searchView.text.toString(), FilterStatus.STARS.filter)
+                        FORKS -> homeViewModel.getRepositories(searchView.text.toString(), FilterStatus.FORKS.filter)
+                        UPDATED -> homeViewModel.getRepositories(searchView.text.toString(), FilterStatus.UPDATED.filter)
+                    }
                 }
             }
         }
@@ -111,33 +113,26 @@ class HomeFragment : Fragment(), RepoClickListener {
 
         homeViewModel.repoStatus.observe(viewLifecycleOwner, Observer {
             when (it) {
-                is RepoStatus.SUCCESS -> hideProgressBar()
-                is RepoStatus.LOADING -> showProgressBar()
-                is RepoStatus.FAILURE -> {
+                RepoStatus.SUCCESS -> hideProgressBar()
+                RepoStatus.LOADING -> showProgressBar()
+                RepoStatus.FAILURE -> {
                 }
             }
-        })
-
-        homeViewModel.filterStatus.observe(viewLifecycleOwner, Observer {
-            repoAdapter.setData(homeViewModel.repositoryList)
-            if (homeViewModel.repositoryList.size > 0) {
-                noSearchResults.visibility = View.GONE
-            } else
-                noSearchResults.visibility = View.VISIBLE
         })
     }
 
     override fun ownerImageClicked(ownerName: String) {
-        val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragmentContainer, OwnerFragment(ownerName)).commit()
-        fragmentTransaction.addToBackStack(OwnerFragment.TAG)
-        resolveKeyboard()
+        openFragment(OwnerFragment.newInstance(ownerName), OwnerFragment.TAG)
     }
 
     override fun repoClicked(gitRepository: GitRepository) {
+        openFragment(RepoDetailsFragment.newInstance(gitRepository), RepoDetailsFragment.TAG)
+    }
+
+    private fun openFragment(fragment: Fragment, fragmentTag: String) {
         val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragmentContainer, RepoDetailsFragment(gitRepository)).commit()
-        fragmentTransaction.addToBackStack(RepoDetailsFragment.TAG)
+        fragmentTransaction.add(R.id.fragmentContainer, fragment).commit()
+        fragmentTransaction.addToBackStack(fragmentTag)
         resolveKeyboard()
     }
 

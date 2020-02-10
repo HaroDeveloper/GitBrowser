@@ -1,7 +1,6 @@
 package element.list.gitbrowser.di
 
 import element.list.gitbrowser.constants.Constants
-import element.list.gitbrowser.networking.ApiService
 import element.list.gitbrowser.networking.GitHubApi
 import element.list.gitbrowser.networking.GitHubRepository
 import element.list.gitbrowser.presentation.fragments.home.HomeViewModel
@@ -16,9 +15,9 @@ import java.util.concurrent.TimeUnit
 
 val apiModule = module {
 
-    fun provideApiService(): ApiService {
-        return ApiService()
-    }
+    //    fun provideApiService(): ApiService {
+//        return ApiService()
+//    }
 
     fun provideOkHttpClient(): OkHttpClient {
         val httpBuilder = OkHttpClient.Builder()
@@ -44,7 +43,6 @@ val apiModule = module {
         return GitHubRepository(gitHubApi)
     }
 
-    single { provideApiService() }
     single { provideOkHttpClient() }
     single { provideRetrofit(get()) }
     single { provideGitHubApi(get()) }
