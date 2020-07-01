@@ -21,5 +21,6 @@
 
     <!-- general -->
     <string name="open_in_browser">Open in browser</string>
+    <string name="repositories_failure">Failed getting repositories. Try again</string>
 
 </resources>

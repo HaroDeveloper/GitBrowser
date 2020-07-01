@@ -1,7 +1,5 @@
 package element.list.gitbrowser.presentation.fragments.owner
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -15,13 +13,13 @@ import com.bumptech.glide.Glide
 import element.list.gitbrowser.R
 import element.list.gitbrowser.constants.Constants
 import element.list.gitbrowser.model.OwnerDetails
+import element.list.gitbrowser.utils.openBrowser
 import element.list.gitbrowser.utils.resolveIfEmpty
 import kotlinx.android.synthetic.main.fragment_owner.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class OwnerFragment : Fragment() {
-
     private val ownerViewModel: OwnerViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,7 +28,8 @@ class OwnerFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        if ((context as FragmentActivity).supportFragmentManager.backStackEntryCount == 0)
+            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,9 +43,7 @@ class OwnerFragment : Fragment() {
 
     private fun setListeners() {
         openWebBrowser.setOnClickListener {
-            val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(ownerViewModel.ownerDetails.value!!.htmlUrl)
-            startActivity(openURL)
+            ownerViewModel.ownerDetails.value?.htmlUrl?.let { context?.let { context -> openBrowser(context, it) } }
         }
     }
 
@@ -79,7 +76,6 @@ class OwnerFragment : Fragment() {
     }
 
     companion object {
-        const val TAG = "OwnerFragment"
         private const val OWNER_NAME = "OwnerName"
 
         fun newInstance(ownerName: String): Fragment {

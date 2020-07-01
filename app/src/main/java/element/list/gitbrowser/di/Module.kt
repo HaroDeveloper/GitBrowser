@@ -16,19 +16,20 @@ import java.util.concurrent.TimeUnit
 val apiModule = module {
 
     fun provideOkHttpClient(): OkHttpClient {
+        val timeoutLength = 15L
         val httpBuilder = OkHttpClient.Builder()
-        httpBuilder.connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(15, TimeUnit.SECONDS)
-                .cookieJar(CookieJar.NO_COOKIES)
+        httpBuilder.connectTimeout(timeoutLength, TimeUnit.SECONDS)
+            .readTimeout(timeoutLength, TimeUnit.SECONDS)
+            .cookieJar(CookieJar.NO_COOKIES)
         return httpBuilder.build()
     }
 
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(Constants.BASE_URL)
-                .client(okHttpClient)
-                .build()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(Constants.BASE_URL)
+            .client(okHttpClient)
+            .build()
     }
 
     fun provideGitHubApi(retrofit: Retrofit): GitHubApi {

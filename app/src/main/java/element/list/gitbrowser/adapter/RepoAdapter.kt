@@ -14,10 +14,11 @@ import element.list.gitbrowser.model.GitRepository
 import element.list.gitbrowser.utils.format
 import kotlinx.android.synthetic.main.item_repository.view.*
 
-class RepoAdapter(private var context: Context) : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
+class RepoAdapter : RecyclerView.Adapter<RepoAdapter.ViewHolder>() {
 
     private var repositoryList: MutableList<GitRepository> = mutableListOf()
     lateinit var repoClickListener: RepoClickListener
+    private lateinit var context: Context
 
     fun setData(repositories: MutableList<GitRepository>) {
         repositoryList = repositories
@@ -25,6 +26,7 @@ class RepoAdapter(private var context: Context) : RecyclerView.Adapter<RepoAdapt
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_repository, parent, false))
     }
 
@@ -33,21 +35,23 @@ class RepoAdapter(private var context: Context) : RecyclerView.Adapter<RepoAdapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.ownerName.text = repositoryList[position].owner.login
-        holder.repositoryName.text = repositoryList[position].name
-        holder.watchers.text = repositoryList[position].watchersCount.toString()
-        holder.forks.text = repositoryList[position].forksCount.toString()
-        holder.issues.text = repositoryList[position].issuesCount.toString()
-        holder.stars.text = repositoryList[position].stars.toString()
-        holder.updateDate.text = repositoryList[position].updateDate?.format()
-        Glide.with(context).load(repositoryList[position].owner.avatarUrl).into(holder.ownerImage)
+        val currentItem = repositoryList[position]
+
+        holder.ownerName.text = currentItem.owner.login
+        holder.repositoryName.text = currentItem.name
+        holder.watchers.text = currentItem.watchersCount.toString()
+        holder.forks.text = currentItem.forksCount.toString()
+        holder.issues.text = currentItem.issuesCount.toString()
+        holder.stars.text = currentItem.stars.toString()
+        holder.updateDate.text = currentItem.updateDate?.format()
+        Glide.with(context).load(currentItem.owner.avatarUrl).into(holder.ownerImage)
 
         holder.ownerImage.setOnClickListener {
-            repoClickListener.ownerImageClicked(repositoryList[position].owner.login!!)
+            repoClickListener.ownerImageClicked(currentItem.owner.login!!)
         }
 
         holder.rootLayout.setOnClickListener {
-            repoClickListener.repoClicked(repositoryList[position])
+            repoClickListener.repoClicked(currentItem)
         }
     }
 

@@ -1,7 +1,5 @@
 package element.list.gitbrowser.presentation.fragments.repodetails
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -15,14 +13,18 @@ import element.list.gitbrowser.constants.Constants
 import element.list.gitbrowser.model.GitRepository
 import element.list.gitbrowser.presentation.fragments.owner.OwnerFragment
 import element.list.gitbrowser.utils.format
+import element.list.gitbrowser.utils.openBrowser
 import kotlinx.android.synthetic.main.fragment_repo_details.*
 
 
 class RepoDetailsFragment : Fragment() {
-
     private lateinit var gitRepository: GitRepository
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_repo_details, container, false)
     }
 
@@ -61,17 +63,16 @@ class RepoDetailsFragment : Fragment() {
 
     private fun setListeners() {
         openWebBrowser.setOnClickListener {
-            val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse(gitRepository.htmlUrl)
-            startActivity(openURL)
+            context?.let { gitRepository.htmlUrl?.let { uri -> openBrowser(it, uri) } }
         }
 
         owner.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack()
-            (context as FragmentActivity).supportFragmentManager.popBackStack()
             val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.fragmentContainer, OwnerFragment.newInstance(gitRepository.owner.login!!)).commit()
-            fragmentTransaction.addToBackStack(OwnerFragment.TAG)
+            fragmentTransaction.add(
+                R.id.fragmentContainer,
+                OwnerFragment.newInstance(gitRepository.owner.login!!)
+            ).commit()
+            fragmentTransaction.addToBackStack(OwnerFragment::class.java.name)
         }
     }
 
@@ -81,7 +82,6 @@ class RepoDetailsFragment : Fragment() {
     }
 
     companion object {
-        const val TAG = "RepoDetailsFragment"
         private const val GIT_REPOSITORY = "GitRepository"
 
         fun newInstance(gitRepository: GitRepository): Fragment {

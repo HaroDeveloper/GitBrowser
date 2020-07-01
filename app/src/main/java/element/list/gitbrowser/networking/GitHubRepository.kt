@@ -1,15 +1,14 @@
 package element.list.gitbrowser.networking
 
-import element.list.gitbrowser.model.OwnerDetails
-import element.list.gitbrowser.model.RepositoryResponse
-import retrofit2.Call
+import element.list.gitbrowser.utils.safeApiCall
+import kotlinx.coroutines.Dispatchers
 
-class GitHubRepository(var gitHubApi: GitHubApi) {
-    fun searchRepositories(searchText: String, sort: String): Call<RepositoryResponse> {
-        return gitHubApi.searchRepositories(searchText, sort)
-    }
+class GitHubRepository(private var gitHubApi: GitHubApi) {
+    suspend fun searchRepositories(searchText: String, sort: String) =
+        safeApiCall(Dispatchers.IO) {
+            gitHubApi.searchRepositories(searchText, sort)
+        }
 
-    fun searchUser(searchText: String): Call<OwnerDetails> {
-        return gitHubApi.searchUser(searchText)
-    }
+    suspend fun searchUser(searchText: String) =
+        safeApiCall(Dispatchers.IO) { gitHubApi.searchUser(searchText) }
 }

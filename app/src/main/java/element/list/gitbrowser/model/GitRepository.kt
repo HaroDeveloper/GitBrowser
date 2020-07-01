@@ -24,5 +24,4 @@ data class GitRepository(
         var stars: Int?,
         @SerializedName("html_url")
         var htmlUrl: String?
-
 ) : Serializable

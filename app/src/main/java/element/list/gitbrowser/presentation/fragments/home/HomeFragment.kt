@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,7 +31,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment(), RepoClickListener {
     private val homeViewModel: HomeViewModel by viewModel()
     private lateinit var repoAdapter: RepoAdapter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -51,15 +57,17 @@ class HomeFragment : Fragment(), RepoClickListener {
     }
 
     private fun setAdapter() {
-        repoAdapter = RepoAdapter(context!!)
+        repoAdapter = RepoAdapter()
         repoAdapter.repoClickListener = this
         flowerRecyclerView.adapter = repoAdapter
-        val repositoryLayoutManager = GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
+        val repositoryLayoutManager =
+            GridLayoutManager(context, COLUMN_COUNT, RecyclerView.VERTICAL, false)
         flowerRecyclerView.layoutManager = repositoryLayoutManager
     }
 
     private fun setListeners() {
-        searchView.setOnTouchListener(OnTouchListener { v, event ->
+        searchView.setOnTouchListener(OnTouchListener { _, event ->
+            searchView.performClick()
             val drawableRight = 2
             if (event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= searchView.right - searchView.compoundDrawables[drawableRight].bounds.width()) {
@@ -71,9 +79,10 @@ class HomeFragment : Fragment(), RepoClickListener {
                 }
             }
             false
-        })
+        }
+        )
 
-        searchView.setOnEditorActionListener { v, actionId, event ->
+        searchView.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 if (!TextUtils.isEmpty(searchView.text.toString())) {
                     homeViewModel.getRepositories(searchView.text.toString())
@@ -90,12 +99,26 @@ class HomeFragment : Fragment(), RepoClickListener {
 
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 if (searchView.text.toString().isNotEmpty()) {
                     when (parent!!.getItemAtPosition(position).toString()) {
-                        STARS -> homeViewModel.getRepositories(searchView.text.toString(), FilterStatus.STARS.filter)
-                        FORKS -> homeViewModel.getRepositories(searchView.text.toString(), FilterStatus.FORKS.filter)
-                        UPDATED -> homeViewModel.getRepositories(searchView.text.toString(), FilterStatus.UPDATED.filter)
+                        STARS -> homeViewModel.getRepositories(
+                            searchView.text.toString(),
+                            FilterStatus.STARS.filter
+                        )
+                        FORKS -> homeViewModel.getRepositories(
+                            searchView.text.toString(),
+                            FilterStatus.FORKS.filter
+                        )
+                        UPDATED -> homeViewModel.getRepositories(
+                            searchView.text.toString(),
+                            FilterStatus.UPDATED.filter
+                        )
                     }
                 }
             }
@@ -116,17 +139,20 @@ class HomeFragment : Fragment(), RepoClickListener {
                 RepoStatus.SUCCESS -> hideProgressBar()
                 RepoStatus.LOADING -> showProgressBar()
                 RepoStatus.FAILURE -> {
+                    hideProgressBar()
+                    Toast.makeText(context, R.string.repositories_failure, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })
     }
 
     override fun ownerImageClicked(ownerName: String) {
-        openFragment(OwnerFragment.newInstance(ownerName), OwnerFragment.TAG)
+        openFragment(OwnerFragment.newInstance(ownerName), HomeFragment::class.java.name)
     }
 
     override fun repoClicked(gitRepository: GitRepository) {
-        openFragment(RepoDetailsFragment.newInstance(gitRepository), RepoDetailsFragment.TAG)
+        openFragment(RepoDetailsFragment.newInstance(gitRepository), RepoDetailsFragment::class.java.name)
     }
 
     private fun openFragment(fragment: Fragment, fragmentTag: String) {
@@ -151,11 +177,9 @@ class HomeFragment : Fragment(), RepoClickListener {
 
     companion object {
         const val COLUMN_COUNT = 1
-        const val TAG = "HomeFragment"
         const val STARS = "stars"
         const val FORKS = "forks"
         const val UPDATED = "updated"
         const val SORT_BY = "sort by:"
     }
-
 }
